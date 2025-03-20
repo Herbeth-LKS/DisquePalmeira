@@ -1,146 +1,76 @@
-import React from 'react'
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  Text,
-  StyleSheet,
-  Linking,
-} from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import Header from './components/Header'
+import SearchBar from './components/SearchBar'
+import ButtonGrid from './components/ButtonGrid'
 
 const buttons = [
   {
     id: 1,
     image: require('./assets/palmeira.png'),
-    label: 'Botão 1',
+    label: 'Nova denúncia',
     link: 'https://example.com/1',
   },
   {
     id: 2,
-    image: require('./assets/palmeira.png'),
-    label: 'Botão 2',
-    link: 'https://example.com/2',
+    icon: 'directions',
+    label: 'MIQCB - São Luís',
+    link: 'https://www.google.com/maps/search/?api=1&query=FM8W%2BP8%20Centro%2C%20S%C3%A3o%20Lu%C3%ADs%20-%20MA',
   },
   {
     id: 3,
-    image: require('./assets/palmeira.png'),
-    label: 'Botão 3',
-    link: 'https://example.com/3',
+    icon: 'web',
+    label: 'Nosso site',
+    link: 'https://miqcb.org.br/',
   },
   {
     id: 4,
-    image: require('./assets/palmeira.png'),
-    label: 'Botão 4',
-    link: 'https://example.com/4',
+    icon: 'phone',
+    label: 'Fale conosco',
+    link: 'tel:9832683357',
   },
   {
     id: 5,
-    image: require('./assets/palmeira.png'),
-    label: 'Botão 5',
-    link: 'https://example.com/5',
+    icon: 'instagram',
+    label: 'Instagram',
+    link: 'https://www.instagram.com/miqcb_',
   },
   {
     id: 6,
-    image: require('./assets/palmeira.png'),
-    label: 'Botão 6',
-    link: 'https://example.com/6',
+    icon: 'email',
+    label: 'E-mail',
+    link: 'mailto:miqcb@miqcb.org.br?subject=Denuncia&body=Olá, preciso de ajuda com...',
   },
 ]
 
 const HomeScreen = () => {
-  const handleButtonPress = (link: string) => {
-    Linking.openURL(link).catch((err) =>
-      console.error('Failed to open link:', err),
-    )
-  }
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const filteredButtons = buttons.filter((button) =>
+    button.label.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
 
   return (
-    <>
-      <View style={styles.header}>
-        <Text style={styles.title}>Disque Palmeira:</Text>
-
-        <Image
-          alt="icon"
-          source={require('./assets/palmeira.png')}
-          style={styles.headerImage}
-        />
-      </View>
+    <View style={styles.mainContainer}>
+      <Header />
+      <SearchBar onSearch={setSearchQuery} />
       <View style={styles.container}>
-        {/* Grade de botões 2x3 */}
-        <View style={styles.grid}>
-          {buttons.map((button) => (
-            <TouchableOpacity
-              key={button.id}
-              style={styles.button}
-              onPress={() => handleButtonPress(button.link)}
-            >
-              <Image alt="icon" source={button.image} style={styles.image} />
-              <Text style={styles.label}>{button.label}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <ButtonGrid buttons={filteredButtons} />
       </View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f0f0f0',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: '10%',
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginRight: 10,
-    color: '#2c4a24',
-  },
-  headerImage: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
-    backgroundColor: '#2c4a24',
-    borderRadius: 50,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    width: '90%',
-  },
-  button: {
-    width: '45%',
-    height: '28%',
-    borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2c4a24',
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    marginBottom: '8%',
-  },
-  image: {
-    width: '50%',
-    height: '50%',
-    resizeMode: 'contain',
-  },
-  label: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: 'bold',
+    padding: 40,
   },
 })
 
