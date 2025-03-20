@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Disque-Palmeira",
+    "slug": "Disque-Palmeira",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2c4a24"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.herbeth56e22.DisquePalmeira"
+    },
+    "android": {
+      "splash": {
+        "image": "./assets/splash-icon.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#2c4a24"
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2c4a24"
+      },
+      "package": "com.herbeth56e22.DisquePalmeira"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
