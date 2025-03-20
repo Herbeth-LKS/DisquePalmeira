@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import ButtonGrid from './components/ButtonGrid'
+import Navbar from '@/components/Navbar'
 
 const buttons = [
   {
@@ -51,13 +52,16 @@ const HomeScreen = () => {
   )
 
   return (
-    <View style={styles.mainContainer}>
-      <Header />
-      <SearchBar onSearch={setSearchQuery} />
-      <View style={styles.container}>
-        <ButtonGrid buttons={filteredButtons} />
+    <>
+      <View style={styles.mainContainer}>
+        <Header />
+        <SearchBar onSearch={setSearchQuery} />
+        <View style={styles.container}>
+          <ButtonGrid buttons={filteredButtons} />
+        </View>
       </View>
-    </View>
+      <Navbar />
+    </>
   )
 }
 
