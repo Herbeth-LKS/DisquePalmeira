@@ -10,7 +10,7 @@ const buttons = [
     id: 1,
     image: require('./assets/palmeira.png'),
     label: 'Nova denúncia',
-    link: 'https://example.com/1',
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSfO-0Pwfugq3At3Qnexmc8TbWE-VXCbgYP9XRGoa8XSajfo2Q/viewform',
   },
   {
     id: 2,
